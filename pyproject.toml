@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gha-pin-audit"
+version = "0.1.0"
+description = "Audit GitHub Actions workflows for unpinned actions, broad token permissions and injection pitfalls"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Jaya Kiran" }]
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+gha-pin-audit = "gha_pin_audit.cli:main"
+
+[tool.setuptools]
+packages = ["gha_pin_audit"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
